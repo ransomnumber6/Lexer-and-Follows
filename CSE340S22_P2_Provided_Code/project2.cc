@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) Mohsen Zohrevandi, 2017
  *               Rida Bazzi 2019
@@ -7,6 +8,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include "lexer.h"
+#include <map>
 
 using namespace std;
 LexicalAnalyzer lexer;
@@ -36,6 +38,7 @@ Token expect(TokenType expected)
     }
     return t;
 }
+void startReading();
 
 // expect function to check if returned token from GetToken() matches expected
 // calls syntax error to exit program otherwise
@@ -82,7 +85,7 @@ void startReading() {
     while(token.token_type != END_OF_FILE) {
         if(token.token_type == ID) {
             rule.LHS = token.lexeme;
-            expect(ARROW)
+            expect(ARROW);
             token = lexer.GetToken();
 
             if(token.token_type == ARROW) {
@@ -155,4 +158,3 @@ int main (int argc, char* argv[])
     }
     return 0;
 }
-
